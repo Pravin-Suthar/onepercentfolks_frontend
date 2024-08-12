@@ -1,12 +1,8 @@
-# Next.js & NextUI Template
+Disclaimer
 
-This is a template for creating applications using Next.js 14 (pages directory) and NextUI (v2).
+The source code contained in this repository is the intellectual property of Pravin Suthar. Pravin Suthar is the original author and copyright holder of the code.By accessing this repository, you are granted a non-exclusive, worldwide, royalty-free license to use, modify, and distribute the code for personal and commercial purposes, provided that proper attribution is given to the original author. This license does not grant you any rights to use the author's name, logo, or trademarks without prior written consent.
 
-[Try it on CodeSandbox](https://githubbox.com/nextui-org/next-pages-template)
-
->Note: Since Next.js 14, the pages router is recommend migrating to the [new App Router](https://nextjs.org/docs/app) to leverage React's latest features
->
->Read more: [Pages Router](https://nextjs.org/docs/pages)
+The code is provided "as-is," without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and non-infringement. In no event shall the author be liable for any claim, damages, or other liability, whether in an action of contract, tort,or otherwise, arising from, out of, or in connection with the code or the use or other dealings in the code.
 
 ## Technologies Used
 
@@ -17,39 +13,3 @@ This is a template for creating applications using Next.js 14 (pages directory) 
 - [TypeScript](https://www.typescriptlang.org)
 - [Framer Motion](https://www.framer.com/motion)
 - [next-themes](https://github.com/pacocoursey/next-themes)
-
-## How to Use
-
-To create a new project based on this template using `create-next-app`, run the following command:
-
-```bash
-npx create-next-app -e https://github.com/nextui-org/next-pages-template
-```
-
-### Install dependencies
-
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
-
-```bash
-npm install
-```
-
-### Run the development server
-
-```bash
-npm run dev
-```
-
-### Setup pnpm (optional)
-
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
-
-```bash
-public-hoist-pattern[]=*@nextui-org/*
-```
-
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
-
-## License
-
-Licensed under the [MIT license](https://github.com/nextui-org/next-pages-template/blob/main/LICENSE).
