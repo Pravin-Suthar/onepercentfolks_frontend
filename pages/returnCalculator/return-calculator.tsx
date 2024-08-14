@@ -7,20 +7,51 @@ import {
   setSipInterestRate,
   setSipAmount,
   setSipDuration,
+  setLumpSumAmount,
+  setRecurringLumpSumFrequency,
 } from "../../store/slices/returnCalculatorSlice";
 import SIPChart from "@/components/charts/sipReturnChart";
+import { calculateFutureValues } from "../../components/Utility/returnUtilities"; // Import the utility function
 
 export default function ReturnCalculatorPage() {
   const sipAmountL = useSelector((state: RootState) => state.example.sipAmount);
+  const lumpSumAmountL = useSelector((state: RootState) => state.example.lumpSumAmount);
   const sipInterestPAl = useSelector(
     (state: RootState) => state.example.sipInterestPA
   );
-
   const sipDurationL = useSelector(
     (state: RootState) => state.example.sipDuration
   );
+  const recurringLumpSumFrequency = useSelector(
+    (state: RootState) => state.example.recurringLumpSumFrequency
+  );
 
   const dispatch = useDispatch();
+
+  // Calculate future values and data points
+  const { lumpSumFutureValue, sipFutureValue, recurringLumpSumFutureValue, totalMaturityValue, dataPoints } = calculateFutureValues({
+    sipAmount: sipAmountL,
+    lumpSumAmount: lumpSumAmountL,
+    sipInterestRate: sipInterestPAl,
+    sipDuration: sipDurationL,
+    recurringLumpSumFrequency: recurringLumpSumFrequency
+  });
+
+  const data = {
+    labels: dataPoints.map((point) => point.x),
+    datasets: [
+      {
+        label: "Total Value Over Time",
+        data: dataPoints.map((point) => point.totalValue),
+        borderColor: "rgba(75,192,192,1)",
+      },
+      {
+        label: "Invested Amount Over Time",
+        data: dataPoints.map((point) => point.investedAmount),
+        borderColor: "rgba(192,75,75,1)",
+      },
+    ],
+  };
 
   return (
     <DefaultLayout>
@@ -28,13 +59,25 @@ export default function ReturnCalculatorPage() {
         <div className={style.left_container}>
           <div className={style.left_container_slider_container}>
             <PercentageSlider
+              step={10000}
+              minValue={0}
+              maxValue={1000000}
+              formatOption={{ style: "currency", currency: "INR" }}
+              label="Lump Sum Amount"
+              showTooltip={true}
+              defaultValue={100000}
+              onChange={(value) => dispatch(setLumpSumAmount(value))}
+            />
+          </div>
+          <div className={style.left_container_slider_container}>
+            <PercentageSlider
               step={500}
               minValue={500}
               maxValue={100000}
               formatOption={{ style: "currency", currency: "INR" }}
-              label="Sip Amount"
+              label="SIP Amount"
               showTooltip={true}
-              defaultValue={50}
+              defaultValue={5000}
               onChange={(value) => dispatch(setSipAmount(value))}
             />
           </div>
@@ -49,32 +92,49 @@ export default function ReturnCalculatorPage() {
               onChange={(value) => dispatch(setSipInterestRate(value))}
             />{" "}
           </div>
-
           <div className={style.left_container_slider_container}>
             <PercentageSlider
               step={1}
               minValue={0}
-              maxValue={30}
+              maxValue={50}
               label="Years"
               showTooltip={true}
               defaultValue={20}
               onChange={(value) => dispatch(setSipDuration(value))}
             />
           </div>
+
+          {/* Select for Recurring Lump Sum Frequency */}
+          <div className={style.left_container_slider_container}>
+            <label htmlFor="recurringFrequency">Recurring Lump Sum Frequency:</label>
+            <select
+              id="recurringFrequency"
+              className={style.select}
+              onChange={(e) =>
+                dispatch(setRecurringLumpSumFrequency(Number(e.target.value)))
+              }
+            >
+              <option value={3}>Quarterly</option>
+              <option value={6}>Every 6 months</option>
+              <option value={12}>Yearly</option>
+            </select>
+          </div>
         </div>
 
         <div className={style.right_container}>
-          {" "}
-          <SIPChart
-            sipAmount={sipAmountL}
-            sipInterestRate={sipInterestPAl}
-            sipDuration={sipDurationL}
-          />
+          <div className={style.chart_wrapper}>
+            {" "}
+            <SIPChart data={data} />
+          </div>
         </div>
       </div>
-      <div>Slider 1 Value: {sipAmountL}</div>
-      <div>Slider 1 Value: {sipInterestPAl}</div>
-      <div>Slider 1 Value: {sipDurationL}</div>
+
+      <div className={style.results_container}>
+        <p>Lump Sum Future Value: ₹{lumpSumFutureValue.toFixed(2)}</p>
+        <p>SIP Future Value: ₹{sipFutureValue.toFixed(2)}</p>
+        <p>Recurring Lump Sum Future Value: ₹{recurringLumpSumFutureValue.toFixed(2)}</p>
+        <p>Total Maturity Value: ₹{totalMaturityValue.toFixed(2)}</p>
+      </div>
     </DefaultLayout>
   );
 }

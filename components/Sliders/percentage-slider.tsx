@@ -24,6 +24,7 @@ export default function PercentageSlider({
 }: PercentageSliderProps) {
   return (
     <Slider
+      color="primary"
       step={step}
       minValue={minValue}
       maxValue={maxValue}
