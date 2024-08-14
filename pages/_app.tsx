@@ -16,7 +16,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <Provider store={store} >
     <NextUIProvider navigate={router.push}>
       <NextThemesProvider>
-        <Component {...pageProps} />
+      <main className="greem-dark-pallet text-foreground bg-background">
+      <Component {...pageProps} />
+      </main>
       </NextThemesProvider>
     </NextUIProvider>
     </Provider>
