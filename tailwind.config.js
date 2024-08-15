@@ -13,65 +13,50 @@ module.exports = {
   darkMode: "class",
   plugins: [nextui({
     themes: {
-      // light: {
-      //   colors: {
-      //     background: "#FFFFFF", // or DEFAULT
-      //     foreground: "#11181C", // or 50 to 900 DEFAULT
-      //     primary: {
-      //       //... 50 to 900
-      //       foreground: "#FFFFFF",
-      //       DEFAULT: "#006FEE",
-      //     },
-      //     // ... rest of the colors
-      //   },
-      // },
-      // dark: {
-      //   colors: {
-      //     background: "#000000", // or DEFAULT
-      //     foreground: "#ECEDEE", // or 50 to 900 DEFAULT
-      //     primary: {
-      //       //... 50 to 900
-      //       foreground: "#FFFFFF",
-      //       DEFAULT: "#006FEE",
-      //     },
-      //   },
-      //   // ... rest of the colors
-      // },
-     "greem-dark-pallet": {
-          // extend: "dark", // <- inherit default values from dark theme
-          colors: {
-            background: "#0D001A",
-            foreground: "#ffffff",
-            primary: {
-              50: "#052814",
-              100: "#095028",
-              200: "#0e793c",
-              300: "#12a150",
-              400: "#17c964",
-              500: "#45d483",
-              600: "#74dfa2",
-              700: "#a2e9c1",
-              800: "#d1f4e0",
-              900: "#e8faf0",
-              DEFAULT: "#12a150",
-              foreground: "#ffffff",
-            },
-            focus: "#F182F6",
+      light: {
+        colors: {
+          background: '#F8F9FA', // Light gray background
+          foreground: '#333', // Dark text
+          primary: {
+            50: '#E8F6F3',
+            100: '#C7E9DE',
+            200: '#A6DBCA', // Light green accents
+            300: '#85CBBA',
+            400: '#64C6AB',
+            500: '#43C19C',
+            600: '#22BB8D',
+            700: '#01B584',
+            800: '#00AE7B',
+            900: '#00A772',
+            DEFAULT: '#43C19C', // Primary color
+            foreground: '#F8F9FA', // Text on primary background
           },
-          layout: {
-            disabledOpacity: "0.3",
-            radius: {
-              small: "4px",
-              medium: "6px",
-              large: "8px",
-            },
-            borderWidth: {
-              small: "1px",
-              medium: "2px",
-              large: "3px",
-            },
-          },
+          focus: '#A6DBCA', // Light green focus
         },
+        // ... other light mode styles
+      },
+      dark: {
+        colors: {
+          background: '#101214', // Dark background
+          foreground: '#fff', // Light text
+          primary: {
+            50: '#18181b',
+            100: '#27272a',
+            200: '#3f3f46',
+            300: '#52525b',
+            400: '#71717a',
+            500: '#a1a1aa',
+            600: '#d4d4d8',
+            700: '#e4e4e7',
+            800: '#f4f4f5',
+            900: '#fafafa',
+            DEFAULT: '#2a3132', // Primary color
+            foreground: '#101214', // Text on primary background
+          },
+          focus: '#8C9BAB', // Light green focus for dark mode
+        },
+        // ... other dark mode styles
+      },
     },
-  }),],
+  })],
 }

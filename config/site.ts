@@ -9,6 +9,10 @@ export const siteConfig = {
       href: "/",
     },
     {
+      label: "Traders Corner",
+      href: "/TradersCorner/pattern-detection",
+    },
+    {
       label: "Return Calculator",
       href: "/returnCalculator/return-calculator",
     },
@@ -25,6 +29,10 @@ export const siteConfig = {
     {
       label: "Return Calculator",
       href: "/returnCalculator/return-calculator",
+    },
+    {
+      label: "Traders Corner",
+      href: "/TradersCorner/pattern-detection",
     },
     {
       label: "About",

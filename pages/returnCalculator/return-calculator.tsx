@@ -72,7 +72,7 @@ export default function ReturnCalculatorPage() {
           <div className={style.left_container_slider_container}>
             <PercentageSlider
               step={500}
-              minValue={500}
+              minValue={0}
               maxValue={100000}
               formatOption={{ style: "currency", currency: "INR" }}
               label="SIP Amount"

@@ -17,6 +17,7 @@ import style from "./../styles/navbar.module.css";
 
 import { siteConfig } from "@/config/site";
 import { SearchIcon, Logo } from "@/components/icons";
+import { ThemeSwitch } from "./theme-switch";
 
 export const Navbar = () => {
 
@@ -55,6 +56,7 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="mg:hidden basis-1 pl-4" justify="end">
+      <ThemeSwitch />
         <NavbarMenuToggle />
       </NavbarContent>
 
