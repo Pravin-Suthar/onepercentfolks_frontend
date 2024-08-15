@@ -21,18 +21,36 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+import { useTheme } from "next-themes";
 
 interface SIPChartProps {
   data: any;
 }
 
-const SIPChart: React.FC<SIPChartProps> = ({
-  data,
-}) => {
-
+const SIPChart: React.FC<SIPChartProps> = ({ data }) => {
+  const { theme } = useTheme();
   return (
     <div>
-      <Line data={data} />
+      <Line
+        data={data}
+        options={{
+          scales: {
+            x: {
+              ticks: {
+                color: theme === "dark" ? "#ffffff" : "#000000", // Dynamic label color based on theme
+              },
+            },
+            y: {
+              ticks: {
+                color: theme === "dark" ? "#ffffff" : "#000000", // Dynamic label color based on theme
+              },
+              grid: {
+                color: theme === "dark" ? "#43C19C" : "#e0e0e0", // Customize grid line color
+              },
+            },
+          },
+        }}
+      />
     </div>
   );
 };
