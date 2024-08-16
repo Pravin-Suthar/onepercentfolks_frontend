@@ -50,7 +50,7 @@ module.exports = {
             700: '#e4e4e7',
             800: '#f4f4f5',
             900: '#fafafa',
-            DEFAULT: '#2a3132', // Primary color
+            DEFAULT: '#fff', // Primary color
             foreground: '#101214', // Text on primary background
           },
           focus: '#8C9BAB', // Light green focus for dark mode
