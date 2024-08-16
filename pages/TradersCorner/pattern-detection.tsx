@@ -63,6 +63,8 @@ export default function ChartTVRender() {
         ref={chartContainerRef}
         style={{ height: "400px", width: "600px" }}
       ></div>
+      <h1>TradingView Lightweight Charts™
+      Copyright (с) 2023 TradingView, Inc. https://www.tradingview.com/</h1>
     </DefaultLayout>
   );
 }
