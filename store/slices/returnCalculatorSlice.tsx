@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface ExampleState {
+interface ReturnCalculatorState { 
   sipAmount: number;
   sipInterestPA: number;
   sipDuration: number;
@@ -9,7 +9,7 @@ interface ExampleState {
   lumpSumDuration: number;
 }
 
-const initialState: ExampleState = {
+const initialState: ReturnCalculatorState = {
   sipAmount: 500,
   sipInterestPA: 12,
   sipDuration: 10,
