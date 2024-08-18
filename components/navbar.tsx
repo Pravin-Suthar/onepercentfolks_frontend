@@ -18,6 +18,7 @@ import style from "./../styles/navbar.module.css";
 import { siteConfig } from "@/config/site";
 import { SearchIcon, Logo } from "@/components/icons";
 import { ThemeSwitch } from "./theme-switch";
+import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
 
 export const Navbar = () => {
 
@@ -31,6 +32,64 @@ export const Navbar = () => {
             <p className="font-bold text-inherit">1% Folks</p>
           </NextLink>
         </NavbarBrand>
+        <Dropdown>
+          <NavbarItem>
+            <DropdownTrigger>
+              <Button
+                disableRipple
+                className="p-0 bg-transparent data-[hover=true]:bg-transparent"
+                // endContent={icons.chevron}
+                radius="sm"
+                variant="light"
+              >
+                Features
+              </Button>
+            </DropdownTrigger>
+          </NavbarItem>
+          <DropdownMenu
+            aria-label="ACME features"
+            className="w-[340px]"
+            itemClasses={{
+              base: "gap-4",
+            }}
+          >
+            <DropdownItem
+              key="autoscaling"
+              description="ACME scales apps to meet user demand, automagically, based on load."
+              // startContent={icons.scale}
+            >
+              Autoscaling
+            </DropdownItem>
+            <DropdownItem
+              key="usage_metrics"
+              description="Real-time metrics to debug issues. Slow query added? We’ll show you exactly where."
+              // startContent={icons.activity}
+            >
+              Usage Metrics
+            </DropdownItem>
+            <DropdownItem
+              key="production_ready"
+              description="ACME runs on ACME, join us and others serving requests at web scale."
+              // startContent={icons.flash}
+            >
+              Production Ready
+            </DropdownItem>
+            <DropdownItem
+              key="99_uptime"
+              description="Applications stay on the grid with high availability and high uptime guarantees."
+              // startContent={icons.server}
+            >
+              +99% Uptime
+            </DropdownItem>
+            <DropdownItem
+              key="supreme_support"
+              description="Overcome any challenge with a supporting team ready to respond."
+              // startContent={icons.user}
+            >
+              +Supreme Support
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
         <div className="hidden lg:flex gap-4 justify-start ml-2">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
