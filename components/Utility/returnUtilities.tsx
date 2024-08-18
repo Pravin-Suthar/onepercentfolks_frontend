@@ -4,66 +4,74 @@ interface DataPoint {
   investedAmount: number;
 }
 
-interface InvestmentData {
+interface SipInvestmentData {
   sipAmount: number;
-  lumpSumAmount: number;
   sipInterestRate: number;
   sipDuration: number;
-  recurringLumpSumFrequency: number;
 }
 
 export const calculateFutureValues = ({
   sipAmount,
-  lumpSumAmount,
   sipInterestRate,
   sipDuration,
-  recurringLumpSumFrequency,
-}: InvestmentData) => {
+}: SipInvestmentData) => {
   const r = sipInterestRate / 100 / 12; // Monthly interest rate
-
-  // Calculate the future value of the initial lump sum investment
-  const lumpSumFutureValue = lumpSumAmount * (1 + r) ** (sipDuration * 12);
+  const n = sipDuration * 12; // Total number of months
 
   // Calculate the future value of the SIP contributions
-  const sipFutureValue = sipAmount * (((1 + r) ** (sipDuration * 12) - 1) / r) * (1 + r);
+  const sipFutureValue = sipAmount * (((1 + r) ** n - 1) / r) * (1 + r);
 
-  // Calculate the future value of recurring lump sum investments
-  const recurringLumpSumFutureValue = Array.from({ length: sipDuration * 12 }, (_, i) => {
-    if (recurringLumpSumFrequency === 3 && (i + 1) % 3 === 0) { // Quarterly
-      return lumpSumAmount * (1 + r) ** (sipDuration * 12 - i);
-    } else if (recurringLumpSumFrequency === 6 && (i + 1) % 6 === 0) { // Every 6 months
-      return lumpSumAmount * (1 + r) ** (sipDuration * 12 - i);
-    } else if (recurringLumpSumFrequency === 12 && (i + 1) % 12 === 0) { // Yearly
-      return lumpSumAmount * (1 + r) ** (sipDuration * 12 - i);
-    }
-    return 0;
-  }).reduce((acc, val) => acc + val, 0);
-
-  // Total maturity value is the sum of the initial lump sum, recurring lump sums, and SIP future values
-  const totalMaturityValue = lumpSumFutureValue + sipFutureValue + recurringLumpSumFutureValue;
+  // Total maturity value is the SIP future value
+  const totalMaturityValue = sipFutureValue;
 
   // Generate data points for the chart
-  const dataPoints: DataPoint[] = Array.from({ length: sipDuration * 4 }, (_, i) => {
-    const quarter = i + 1;
-    const n = quarter * 3; // Number of months for the current quarter
-    const lumpSumPart = lumpSumAmount * (1 + r) ** n;
-    const sipPart = sipAmount * (((1 + r) ** n - 1) / r) * (1 + r);
-    const recurringLumpSumPart = Array.from({ length: n }, (_, j) => {
-      if (recurringLumpSumFrequency === 3 && (j + 1) % 3 === 0) {
-        return lumpSumAmount * (1 + r) ** (n - j);
-      } else if (recurringLumpSumFrequency === 6 && (j + 1) % 6 === 0) {
-        return lumpSumAmount * (1 + r) ** (n - j);
-      } else if (recurringLumpSumFrequency === 12 && (j + 1) % 12 === 0) {
-        return lumpSumAmount * (1 + r) ** (n - j);
-      }
-      return 0;
-    }).reduce((acc, val) => acc + val, 0);
+  const dataPoints: DataPoint[] = Array.from(
+    { length: sipDuration * 4 },
+    (_, i) => {
+      const quarter = i + 1;
+      const months = quarter * 3; // Number of months for the current quarter
+      const investedAmount = sipAmount * months;
+      const futureValue = sipAmount * (((1 + r) ** months - 1) / r) * (1 + r);
+      const year = quarter / 4; // Convert quarters to years
 
-    const totalValue = lumpSumPart + sipPart + recurringLumpSumPart;
-    const investedAmount = sipAmount * n + lumpSumAmount + (lumpSumAmount * Math.floor(n / recurringLumpSumFrequency)); // Total invested amount
-    const year = quarter / 4; // Convert quarters to years
-    return { x: year, totalValue, investedAmount }; // Years, maturity value, and invested amount
-  });
+      return { x: year, totalValue: futureValue, investedAmount }; // Years, maturity value, and invested amount
+    }
+  );
 
-  return { lumpSumFutureValue, sipFutureValue, recurringLumpSumFutureValue, totalMaturityValue, dataPoints };
+  return { sipFutureValue, totalMaturityValue, dataPoints };
+};
+
+interface LumpSumInvestmentData {
+  lumpSumAmount: number;
+  lumpSumInterestPA: number;
+  lumpSumDuration: number;
+}
+
+export const calculateLumpSumFutureValues = ({
+  lumpSumAmount,
+  lumpSumInterestPA,
+  lumpSumDuration,
+}: LumpSumInvestmentData) => {
+  const r = lumpSumInterestPA / 100; // Monthly interest rate as a decimal
+  const n = lumpSumDuration; // Total number of months
+
+  const lumpSumFutureValue = lumpSumAmount * (1 + r) ** n;
+
+  // Total maturity value is the same as the lump sum future value at the end of the term
+  const totalMaturityValue = lumpSumFutureValue;
+  // Total maturity value is the lump sum future value
+
+  const mr = lumpSumInterestPA / 100 / 12; // Monthly interest rate
+  // Generate data points for the chart
+  const dataPoints: DataPoint[] = Array.from(
+    { length: lumpSumDuration * 12 },
+    (_, i) => {
+      const months = lumpSumDuration * 12; // Number of months for the current quarter
+      const investedAmount = lumpSumAmount;
+      const futureValue = lumpSumAmount * (1 + mr) ** i;
+      return { x: months, totalValue: futureValue, investedAmount }; // Years, maturity value, and invested amount
+    }
+  );
+
+  return { lumpSumFutureValue, totalMaturityValue, dataPoints };
 };

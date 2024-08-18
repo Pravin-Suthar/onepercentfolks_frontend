@@ -5,18 +5,6 @@ export const siteConfig = {
   description: "Make beautiful websites regardless of your design experience.",
   navItems: [
     {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Traders Corner",
-      href: "/TradersCorner/pattern-detection",
-    },
-    {
-      label: "Return Calculator",
-      href: "/returnCalculator/return-calculator",
-    },
-    {
       label: "About",
       href: "/About/aboutUs",
     },
@@ -32,13 +20,36 @@ export const siteConfig = {
     },
     {
       label: "Traders Corner",
-      href: "/TradersCorner/pattern-detection",
+      href: "/TradersCorner/live-market",
     },
     {
       label: "About",
       href: "/About/aboutUs",
     },
   ],
+  navMenuTradersCornerItems: [
+  
+    {
+      label: "Live Market",
+      href: "/TradersCorner/live-market",
+    },
+    {
+      label: "Coming soon... stay tuned",
+      href: "/",
+    },
+  ],
+
+  returnCalculatorTools: [
+    {
+      label: "SIP Calculator",
+      href: "/returnCalculator/sip-calculator",
+    },
+    {
+      label: "Lumpsum Calculator",
+      href: "/returnCalculator/lumpsum-calculator",
+    },
+  ],
+
   links: {
     github: "https://github.com/nextui-org/nextui",
     twitter: "https://twitter.com/getnextui",

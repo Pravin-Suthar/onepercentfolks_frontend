@@ -5,7 +5,7 @@ import returnCalculator from './slices/returnCalculatorSlice'
 
 export const store = configureStore({
   reducer: {
-    example: returnCalculator,
+    returnCalculator: returnCalculator,
   },
 });
 
