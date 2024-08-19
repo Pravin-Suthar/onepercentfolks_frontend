@@ -16,7 +16,7 @@ export const siteConfig = {
     },
     {
       label: "Return Calculator",
-      href: "/returnCalculator/return-calculator",
+      href: "/InvestementTools/return-calculator",
     },
     {
       label: "Traders Corner",
@@ -42,11 +42,11 @@ export const siteConfig = {
   returnCalculatorTools: [
     {
       label: "SIP Calculator",
-      href: "/returnCalculator/sip-calculator",
+      href: "/InvestementTools/sip-calculator",
     },
     {
       label: "Lumpsum Calculator",
-      href: "/returnCalculator/lumpsum-calculator",
+      href: "/InvestementTools/lumpsum-calculator",
     },
   ],
 
