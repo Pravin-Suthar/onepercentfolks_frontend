@@ -62,57 +62,58 @@ export default function ChartTVRender() {
     <DefaultLayout>
       <div className={style.main_container}>
         <div className={style.main_container_left}>
-          <h1>Live Market</h1>
-          {/* <div className="w-full max-w-[260px] border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100"> */}
-          <Listbox
-            topContent={"topContent"}
-            classNames={{
-              base: "max-w-xs",
-              list: "max-h-[300px] overflow-scroll",
-            }}
-            items={tradingInstrumentData.instruments}
-            label="Assigned to"
-            selectionMode="single"
-            variant="flat"
-            onSelectionChange={(selectedItem) => {
-              if (selectedItem) {
-                // Convert Set to array and extract the first item
-                /* */
-                const selectedKey = Array.from(selectedItem)[0];
-                handleButtonClick(selectedKey.toString());
-              }
-            }}
-          >
-            {(item) => (
-              <ListboxItem key={item.id} textValue={item.name}>
-                <div className="flex gap-2 items-center">
-                  <Avatar
-                    alt={item.name}
-                    className="flex-shrink-0"
-                    size="sm"
-                    src={item.name}
-                  />
-                  <div className="flex flex-col">
-                    <span className="text-small">{item.name}</span>
-                    <span className="text-tiny text-default-400">
-                      {item.name}
-                    </span>
+          <ScrollShadow hideScrollBar className="w-[560px] h-[600px]">
+            <Listbox
+              topContent={"topContent"}
+              items={tradingInstrumentData.instruments}
+              label="Assigned to"
+              selectionMode="single"
+              variant="flat"
+              onSelectionChange={(selectedItem) => {
+                if (selectedItem) {
+                  // Convert Set to array and extract the first item
+                  /* */
+                  const selectedKey = Array.from(selectedItem)[0];
+                  handleButtonClick(selectedKey.toString());
+                }
+              }}
+            >
+              {(item) => (
+                <ListboxItem
+                  key={item.id}
+                  textValue={item.name}
+                  showDivider={true}
+                >
+                  <div className="flex gap-2 items-center">
+                    <Avatar
+                      alt={item.name}
+                      className="flex-shrink-0"
+                      size="sm"
+                      src={item.name}
+                    />
+                    <div className="flex flex-col">
+                      <span className="text-small">{item.name}</span>
+                      <span className="text-tiny text-default-400">
+                        {item.name}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </ListboxItem>
-            )}
-          </Listbox>
-          {/* </div> */}
+                </ListboxItem>
+              )}
+            </Listbox>
+          </ScrollShadow>
         </div>
         <div className={style.main_container_right}>
-          <h1>
-            TradingView Lightweight Charts™ Copyright (с) 2023 TradingView,
-            Inc. https://www.tradingview.com/
-          </h1>
           <div
+            className={style.main_container_right_trading_view_chart}
             ref={chartContainerRef}
-            style={{ height: "400px", width: "600px" }}
           ></div>
+          <div className={style.trading_view_statement}>
+            <h1>
+              TradingView Lightweight Charts™ Copyright (с) 2023 TradingView,
+              Inc. https://www.tradingview.com/
+            </h1>
+          </div>
         </div>
       </div>
     </DefaultLayout>

@@ -1,32 +1,45 @@
 .main_container {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-  }
-  
-  .main_container_left {
-    box-shadow: 0px 0px 8px 4px hsl(var(--nextui-primary-50));
-    border-radius: 20px;
-    display: flex;
-    border: 1px solid red;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 80%;
-    width: 40%;
-  }
-  
-  .main_container_right {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
 
-    box-shadow: 0px 0px 8px 4px hsl(var(--nextui-primary-50));
-    border-radius: 20px;
-    height: 80%;
-    width: 50%;
-  }
+.main_container_left {
+  box-shadow: 0px 0px 8px 4px hsl(var(--nextui-primary-50));
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  width: 40%;
+}
+
+.main_container_right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 0px 8px 4px hsl(var(--nextui-primary-50));
+  border-radius: 20px;
+  height: 80%;
+  width: 50%;
+}
+.main_container_right_trading_view_chart{
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.trading_view_statement {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  width: 100%;
+}
