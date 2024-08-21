@@ -6,6 +6,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { getStockData } from "@/store/slices/traderCornerSlice";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { tradingInstrumentData } from "@/config/tradingInstrumentData";
+import {
+  Listbox,
+  ListboxItem,
+  Chip,
+  ScrollShadow,
+  Avatar,
+} from "@nextui-org/react";
 
 export default function ChartTVRender() {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
@@ -45,23 +53,61 @@ export default function ChartTVRender() {
     }
   }, [selectedStockDataL]);
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (instrumentKey: string) => {
     console.log("Button clicked");
-    dispatch(getStockData());
+    dispatch(getStockData(instrumentKey));
   };
 
   return (
     <DefaultLayout>
       <div className={style.main_container}>
         <div className={style.main_container_left}>
-          <button onClick={handleButtonClick}>
-            <h1>Live Market</h1>
-          </button>
+          <h1>Live Market</h1>
+          {/* <div className="w-full max-w-[260px] border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100"> */}
+          <Listbox
+            topContent={"topContent"}
+            classNames={{
+              base: "max-w-xs",
+              list: "max-h-[300px] overflow-scroll",
+            }}
+            items={tradingInstrumentData.instruments}
+            label="Assigned to"
+            selectionMode="single"
+            variant="flat"
+            onSelectionChange={(selectedItem) => {
+              if (selectedItem) {
+                // Convert Set to array and extract the first item
+                /* */
+                const selectedKey = Array.from(selectedItem)[0];
+                handleButtonClick(selectedKey.toString());
+              }
+            }}
+          >
+            {(item) => (
+              <ListboxItem key={item.id} textValue={item.name}>
+                <div className="flex gap-2 items-center">
+                  <Avatar
+                    alt={item.name}
+                    className="flex-shrink-0"
+                    size="sm"
+                    src={item.name}
+                  />
+                  <div className="flex flex-col">
+                    <span className="text-small">{item.name}</span>
+                    <span className="text-tiny text-default-400">
+                      {item.name}
+                    </span>
+                  </div>
+                </div>
+              </ListboxItem>
+            )}
+          </Listbox>
+          {/* </div> */}
         </div>
         <div className={style.main_container_right}>
           <h1>
-            TradingView Lightweight Charts™ Copyright (с) 2023 TradingView, Inc.
-            https://www.tradingview.com/
+            TradingView Lightweight Charts™ Copyright (с) 2023 TradingView,
+            Inc. https://www.tradingview.com/
           </h1>
           <div
             ref={chartContainerRef}

@@ -20,11 +20,12 @@ const initialState: TraderCornerState = {
   isLoading: false,
 };
 
-export const getStockData = createAsyncThunk<OHLCData[], void>(
+export const getStockData = createAsyncThunk<OHLCData[], string>(
   "users/getUsers",
-  async () => {
+    async ( instrumentKey: string ) => {
+      console.log("Fetching data for", instrumentKey);
     const response = await fetch(
-      "https://api.upstox.com/v2/historical-candle/NSE_EQ%7CINE423A01024/day/2024-08-15/2024-01-01"
+      `https://api.upstox.com/v2/historical-candle/NSE_EQ%7C${instrumentKey}/day/2024-08-15/2024-01-01`
     );
     const data = await response.json();
 
