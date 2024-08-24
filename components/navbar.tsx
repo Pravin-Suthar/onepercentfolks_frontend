@@ -59,8 +59,8 @@ export const Navbar = () => {
               items={siteConfig.navMenuTradersCornerItems}
             >
               {(item) => (
-          <DropdownItem
-                 href={item.href}  
+                <DropdownItem
+                  href={item.href}
                   key={item.label}
                   color={item.label === "delete" ? "danger" : "default"}
                   className={item.label === "delete" ? "text-danger" : ""}
@@ -89,8 +89,8 @@ export const Navbar = () => {
               items={siteConfig.returnCalculatorTools}
             >
               {(item) => (
-          <DropdownItem
-                 href={item.href}  
+                <DropdownItem
+                  href={item.href}
                   key={item.label}
                   color={item.label === "delete" ? "danger" : "default"}
                   className={item.label === "delete" ? "text-danger" : ""}
@@ -100,6 +100,7 @@ export const Navbar = () => {
               )}
             </DropdownMenu>
           </Dropdown>
+
           <div className="hidden lg:flex gap-4 justify-start ml-2">
             {siteConfig.navItems.map((item) => (
               <NavbarItem key={item.href}>
@@ -116,10 +117,14 @@ export const Navbar = () => {
               </NavbarItem>
             ))}
           </div>
-          
         </NavbarContent>
 
         <NavbarContent className="mg:hidden basis-1 pl-4" justify="end">
+          <div className="sm:flex justify-end">
+            <NextLink href={siteConfig.loginSigninSignup[1]["href"]}>
+              <Button size="sm">Sign In</Button>
+            </NextLink>
+          </div>
           <ThemeSwitch />
           <NavbarMenuToggle />
         </NavbarContent>

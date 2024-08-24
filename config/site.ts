@@ -50,6 +50,17 @@ export const siteConfig = {
     },
   ],
 
+  loginSigninSignup: [
+    {
+      label: "Login",
+      href: "/Auth/login",
+    },
+    {
+      label: "Signup",
+      href: "/Auth/signup",
+    },
+  ],
+
   links: {
     github: "https://github.com/nextui-org/nextui",
     twitter: "https://twitter.com/getnextui",

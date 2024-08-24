@@ -1,7 +1,7 @@
 import { Link } from "@nextui-org/link";
 
 import { Head } from "./head";
-import style from './../styles/homepage/index.module.css';
+import style from "./../styles/homepage/index.module.css";
 
 import { Navbar } from "@/components/navbar";
 
@@ -14,9 +14,9 @@ export default function DefaultLayout({
     <div className="relative flex flex-col h-screen">
       <Head />
       <Navbar />
-        {children}
+      {children}
       <footer className="w-full flex items-center justify-center py-3">
-       <h1>Made In India</h1>
+        <h1>Made In India</h1>
       </footer>
     </div>
   );
