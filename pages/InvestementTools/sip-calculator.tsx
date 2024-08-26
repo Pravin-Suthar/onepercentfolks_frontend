@@ -5,7 +5,7 @@ import {
   setSipInterestRate,
   setSipAmount,
   setSipDuration
-} from "../../store/slices/returnCalculatorSlice";
+} from  "@/redux/reducers/returnCalculatorSlice";
 import { calculateFutureValues } from "../../components/Utility/returnUtilities"; // Import the utility function
 
 import style from "./../../styles/returnCalculator/returnCalculator.module.css";

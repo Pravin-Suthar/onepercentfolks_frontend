@@ -3,15 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/store";
 import { calculateLumpSumFutureValues } from "../../components/Utility/returnUtilities"; // Import the utility function
 import style from "./../../styles/returnCalculator/returnCalculator.module.css";
-import {
-  setLumpSumAmount,
-  setLumpSumDuration,
-  setLumpSumInterestRate,
-} from "../../store/slices/returnCalculatorSlice";
 
 import PercentageSlider from "@/components/Sliders/percentage-slider";
 import DefaultLayout from "@/layouts/default";
 import SIPChart from "@/components/charts/sipReturnChart";
+import { setLumpSumAmount, setLumpSumDuration, setLumpSumInterestRate } from "@/redux/reducers/returnCalculatorSlice";
 
 export default function ReturnCalculatorPage() {
   const lumpSumAmountL = useSelector(

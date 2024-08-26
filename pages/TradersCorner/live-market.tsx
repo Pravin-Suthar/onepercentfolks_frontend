@@ -4,7 +4,6 @@ import { ColorType, createChart, IChartApi } from "lightweight-charts";
 import style from "@/styles/tradersCorner/liveMarket.module.css";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { getStockData } from "@/store/slices/traderCornerSlice";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { tradingInstrumentData } from "@/config/tradingInstrumentData";
 import {
@@ -14,6 +13,7 @@ import {
   ScrollShadow,
   Avatar,
 } from "@nextui-org/react";
+import { getStockData } from "@/redux/reducers/traderCornerSlice";
 
 export default function ChartTVRender() {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
